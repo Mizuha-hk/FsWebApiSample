@@ -22,9 +22,16 @@ module Program =
 
         let builder = WebApplication.CreateBuilder(args)
 
+        builder.Services.AddSwaggerGen()
+
         builder.Services.AddControllers()
 
         let app = builder.Build()
+
+        if (app.Environment.IsDevelopment()) then
+            app.UseSwagger()
+            app.UseSwaggerUI()
+            |> ignore
 
         app.UseHttpsRedirection()
 
