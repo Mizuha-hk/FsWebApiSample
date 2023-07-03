@@ -24,8 +24,6 @@ module Program =
 
         builder.Services.AddSwaggerGen()
 
-        builder.Services.AddControllers()
-
         let app = builder.Build()
 
         if (app.Environment.IsDevelopment()) then
@@ -36,7 +34,6 @@ module Program =
         app.UseHttpsRedirection()
 
         app.UseAuthorization()
-        app.MapControllers()
 
         app.Run()
 
