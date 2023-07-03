@@ -9,6 +9,7 @@ open Microsoft.AspNetCore
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
 open Microsoft.AspNetCore.HttpsPolicy
+open Microsoft.AspNetCore.Http
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
@@ -22,6 +23,7 @@ module Program =
 
         let builder = WebApplication.CreateBuilder(args)
 
+        builder.Services.AddEndpointsApiExplorer()
         builder.Services.AddSwaggerGen()
 
         let app = builder.Build()
@@ -33,7 +35,10 @@ module Program =
 
         app.UseHttpsRedirection()
 
-        app.UseAuthorization()
+        app.MapGet("/api/Sample", Func<IResult>(fun () ->
+            TypedResults.Ok("Sample")))
+            .WithName("Sample")
+            .WithOpenApi()
 
         app.Run()
 
