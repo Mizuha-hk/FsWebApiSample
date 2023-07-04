@@ -15,6 +15,8 @@ open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
 open Microsoft.Extensions.Logging
 
+open FsWebApiSample.Endpoints
+
 module Program =
     let exitCode = 0
 
@@ -35,10 +37,7 @@ module Program =
 
         app.UseHttpsRedirection()
 
-        app.MapGet("/api/Sample", Func<IResult>(fun () ->
-            TypedResults.Ok("Sample")))
-            .WithName("Sample")
-            .WithOpenApi()
+        app.MapSampleEndpoints()
 
         app.Run()
 
