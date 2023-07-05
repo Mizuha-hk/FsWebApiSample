@@ -1,6 +1,6 @@
 ﻿namespace FsWebApiSample.Endpoints
-
-open System
+#nowarn "20"
+open System                             //Func<>
 open System.Runtime.CompilerServices    //[<Extension>]
 open Microsoft.AspNetCore.Builder       //MapGroup
 open Microsoft.AspNetCore.Routing       //IEndpointRouteBuilder
